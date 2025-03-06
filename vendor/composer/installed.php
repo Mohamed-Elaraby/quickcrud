@@ -1,7 +1,7 @@
 <?php return array(
     'root' => array(
         'name' => 'mohamedelaraby/quickcrud',
-        'pretty_version' => '1.0.0+no-version-set',
+        'pretty_version' => '1.0.0',
         'version' => '1.0.0.0',
         'reference' => null,
         'type' => 'library',
@@ -74,7 +74,7 @@
             'dev_requirement' => false,
         ),
         'mohamedelaraby/quickcrud' => array(
-            'pretty_version' => '1.0.0+no-version-set',
+            'pretty_version' => '1.0.0',
             'version' => '1.0.0.0',
             'reference' => null,
             'type' => 'library',

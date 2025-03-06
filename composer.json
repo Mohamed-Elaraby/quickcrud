@@ -3,7 +3,6 @@
   "description": "Laravel CRUD Generator Package",
   "type": "library",
   "license": "MIT",
-  "version": "1.0.0",
   "autoload": {
     "psr-4": {
       "Mohamedelaraby\\QuickCrud\\": "src/"
@@ -19,13 +18,5 @@
   "require": {
     "php": "^8.0",
     "illuminate/support": "^9.0|^10.0"
-  },
-  "minimum-stability": "dev",
-  "prefer-stable": true,
-  "repositories": [
-    {
-      "type": "vcs",
-      "url": "https://github.com/mohamedelaraby/quickcrud"
-    }
-  ]
+  }
 }
