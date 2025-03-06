@@ -40,6 +40,31 @@ class GenerateCrud extends Command
         File::put($controllerPath, $controllerStub);
         $this->info("Controller Created: {$controllerPath}");
 
+        // Generate Views
+        $views = ['index', 'create', 'edit'];
+        foreach ($views as $view) {
+            $viewStub = file_get_contents(resource_path("stubs/views/{$view}.stub"));
+            $viewStub = str_replace(
+                [
+                    '{{ModelName}}',
+                    '{{modelVariable}}',
+                    '{{pluralModel}}',
+                    '{{translationFormattedString}}',
+                    '{{titleUpperCase}}'
+                ],
+                [
+                    $modelName,
+                    $modelVariable,
+                    $pluralModel,
+                    $translationFormattedString,
+                    $titleUpperCase
+                ],
+                $viewStub
+            );
+            File::put("{$viewPath}/{$view}.blade.php", $viewStub);
+        }
+        $this->info("Views Created: {$viewPath}");
+
         // Generate Model
         $modelStub = file_get_contents(__DIR__.'/../../../resources/stubs/models/model.stub');
         $modelStub = str_replace('{{ModelName}}', $modelName, $modelStub);
