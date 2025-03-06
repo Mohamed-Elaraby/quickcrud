@@ -43,7 +43,7 @@ class GenerateCrud extends Command
         // Generate Views
         $views = ['index', 'create', 'edit'];
         foreach ($views as $view) {
-            $viewStub = file_get_contents(__DIR__.'/../../../../resources/stubs/views/'.$view.'.stub');
+            $viewStub = file_get_contents(__DIR__.'/../../../resources/stubs/views/'.$view.'.stub');
             $viewStub = str_replace(
                 [
                     '{{ModelName}}',
