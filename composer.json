@@ -1,0 +1,22 @@
+{
+  "name": "mohamedelaraby/quickcrud",
+  "description": "Laravel CRUD Generator Package",
+  "type": "library",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "Mohamedelaraby\\QuickCrud\\": "src/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Mohamedelaraby\\QuickCrud\\QuickCrudServiceProvider"
+      ]
+    }
+  },
+  "require": {
+    "php": "^8.0",
+    "illuminate/support": "^9.0|^10.0"
+  }
+}
