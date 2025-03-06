@@ -32,11 +32,11 @@ class GenerateCrud extends Command
         $this->createDirectory(dirname($dataTablePath));
 
         // Generate Controller
-        $controllerStub = file_get_contents(__DIR__.'/../../../resources/stubs/controller.stub');        $controllerStub = str_replace(
+        $controllerStub = file_get_contents(__DIR__.'/../../../resources/stubs/controllers/controller.stub');
+        $controllerStub = str_replace(
         ['{{ModelName}}', '{{modelVariable}}', '{{pluralModel}}'],
         [$modelName, $modelVariable, $pluralModel],
-        $controllerStub
-    );
+        $controllerStub);
         File::put($controllerPath, $controllerStub);
         $this->info("Controller Created: {$controllerPath}");
 
