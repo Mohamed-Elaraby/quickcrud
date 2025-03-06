@@ -67,7 +67,7 @@ class GenerateCrud extends Command
 
         // Generate DataTable
         File::ensureDirectoryExists(base_path('app/DataTables'));
-        $datatableStub = file_get_contents(resource_path('stubs/datatables/datatable.stub'));
+        $datatableStub = file_get_contents(__DIR__.'/../../../resources/stubs/datatables/datatable.stub');
         $datatableStub = str_replace(
             ['{{ModelName}}', '{{modelVariable}}', '{{pluralModel}}'],
             [$modelName, $modelVariable, $pluralModel],
@@ -83,7 +83,8 @@ class GenerateCrud extends Command
         $this->info("Model Created: {$modelPath}");
 
         // Generate Migration
-        $migrationStub = file_get_contents(resource_path('stubs/migrations/migration.stub'));
+        $migrationStub = file_get_contents(__DIR__.'/../../../resources/stubs/migrations/migration.stub');
+
         $migrationStub = str_replace('{{pluralModel}}', $pluralModel, $migrationStub);
         File::put($migrationPath, $migrationStub);
         $this->info("Migration Created: {$migrationPath}");
