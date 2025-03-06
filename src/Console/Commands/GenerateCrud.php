@@ -31,6 +31,15 @@ class GenerateCrud extends Command
         $this->createDirectory($viewPath);
         $this->createDirectory(dirname($dataTablePath));
 
+        // Generate Controller
+        $controllerStub = file_get_contents(__DIR__.'/../../../resources/stubs/controller.stub');        $controllerStub = str_replace(
+        ['{{ModelName}}', '{{modelVariable}}', '{{pluralModel}}'],
+        [$modelName, $modelVariable, $pluralModel],
+        $controllerStub
+    );
+        File::put($controllerPath, $controllerStub);
+        $this->info("Controller Created: {$controllerPath}");
+
         // Generate Model
         $modelStub = file_get_contents(__DIR__.'/../../../resources/stubs/models/model.stub');
         $modelStub = str_replace('{{ModelName}}', $modelName, $modelStub);
