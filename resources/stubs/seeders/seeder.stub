@@ -1,0 +1,22 @@
+<?php
+
+namespace Database\Seeders;
+
+use Illuminate\Database\Seeder;
+use App\Models\{{ModelName}};
+
+class {{ModelName}}Seeder extends Seeder
+{
+    public function run()
+    {
+        ${{modelVariable}}_list = [
+            ['name' => '{{modelVariable}} 1'],
+            ['name' => '{{modelVariable}} 2'],
+            ['name' => '{{modelVariable}} 3'],
+        ];
+
+        foreach (${{modelVariable}}_list as ${{modelVariable}}) {
+            {{ModelName}}::create(${{modelVariable}});
+        }
+    }
+}

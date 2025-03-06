@@ -133,8 +133,52 @@ class GenerateCrud extends Command
             $this->info("Admin group created with new route!");
         }
 
+        // Generate Seeder
+        $this->generateSeeder($modelName, $modelVariable);
+
+        // Update DatabaseSeeder
+        $this->updateDatabaseSeeder($modelName);
 
         $this->info("CRUD for {$modelName} generated successfully!");
+    }
+
+    private function generateSeeder($modelName, $modelVariable)
+    {
+        $seederPath = base_path("database/seeders/{$modelName}Seeder.php");
+
+        $seederStub = file_get_contents(__DIR__.'/../../../resources/stubs/seeders/seeder.stub');
+        $seederStub = str_replace(
+            ['{{ModelName}}', '{{modelVariable}}'],
+            [$modelName, $modelVariable],
+            $seederStub
+        );
+
+        File::put($seederPath, $seederStub);
+        $this->info("Seeder Created: {$seederPath}");
+    }
+
+    private function updateDatabaseSeeder($modelName)
+    {
+        $databaseSeederPath = base_path('database/seeders/DatabaseSeeder.php');
+        $content = File::get($databaseSeederPath);
+
+        $search = '/public function run\(\): void\s*{([^}]*)}/s';
+        preg_match($search, $content, $matches);
+
+        if (isset($matches[1])) {
+            $newCall = "\n        \$this->call({$modelName}Seeder::class);";
+
+            if (strpos($matches[1], $newCall) === false) {
+                $updatedContent = str_replace(
+                    $matches[1],
+                    $matches[1] . $newCall,
+                    $content
+                );
+
+                File::put($databaseSeederPath, $updatedContent);
+                $this->info("DatabaseSeeder updated successfully!");
+            }
+        }
     }
 
     private function createDirectory($path)
