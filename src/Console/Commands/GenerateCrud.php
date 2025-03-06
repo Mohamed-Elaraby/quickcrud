@@ -77,7 +77,8 @@ class GenerateCrud extends Command
         $this->info("DataTable Created: {$dataTablePath}");
 
         // Generate Model
-        $modelStub = file_get_contents(resource_path('stubs/models/model.stub'));
+        $modelStub = file_get_contents(__DIR__.'/../../../resources/stubs/models/model.stub');
+
         $modelStub = str_replace('{{ModelName}}', $modelName, $modelStub);
         File::put($modelPath, $modelStub);
         $this->info("Model Created: {$modelPath}");
